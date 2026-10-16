@@ -10,8 +10,7 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* 
-       توحيد تصميم لوحة التحكم مع صفحة الطلاب */
+    /* توحيد تصميم لوحة التحكم مع صفحة الطلاب */
 
     :root {
       --students-navy: #172740;
@@ -43,7 +42,6 @@
       box-sizing: border-box;
     }
 
-    /* خلفية الصفحة */
     .dashboard-page {
       box-sizing: border-box;
     }
@@ -80,7 +78,7 @@
       color: var(--students-muted);
     }
 
-    /* زر إظهار وإخفاء القائمة */
+    /* زر القائمة الجانبية */
     .dashboard-page .sidebar-toggle {
       flex-shrink: 0;
       width: 44px;
@@ -441,145 +439,146 @@
 
 <header class="school-heading" dir="rtl">
 
-    <div class="heading-school-icon">
-        <svg viewBox="0 0 100 100" aria-hidden="true">
-            <path d="M10 40 L50 12 L90 40"
-                  fill="none" stroke="currentColor"
-                  stroke-width="5" stroke-linejoin="round"/>
+  <div class="heading-school-icon">
+    <svg viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M10 40 L50 12 L90 40"
+            fill="none" stroke="currentColor"
+            stroke-width="5" stroke-linejoin="round"/>
 
-            <rect x="18" y="40" width="64" height="48"
-                  rx="3" fill="none"
-                  stroke="currentColor" stroke-width="4"/>
+      <rect x="18" y="40" width="64" height="48"
+            rx="3" fill="none"
+            stroke="currentColor" stroke-width="4"/>
 
-            <rect x="42" y="61" width="16" height="27"
-                  fill="none" stroke="currentColor"
-                  stroke-width="3"/>
+      <rect x="42" y="61" width="16" height="27"
+            fill="none" stroke="currentColor"
+            stroke-width="3"/>
 
-            <rect x="26" y="49" width="11" height="10"
-                  fill="none" stroke="currentColor"
-                  stroke-width="3"/>
+      <rect x="26" y="49" width="11" height="10"
+            fill="none" stroke="currentColor"
+            stroke-width="3"/>
 
-            <rect x="63" y="49" width="11" height="10"
-                  fill="none" stroke="currentColor"
-                  stroke-width="3"/>
-        </svg>
-    </div>
+      <rect x="63" y="49" width="11" height="10"
+            fill="none" stroke="currentColor"
+            stroke-width="3"/>
+    </svg>
+  </div>
 
-    <div class="heading-ministry">
-        <h2>وزارة التربية والتعليم</h2>
-        <h3>لواء بني كنانة</h3>
-    </div>
+  <div class="heading-ministry">
+    <h2>وزارة التربية والتعليم</h2>
+    <h3>لواء بني كنانة</h3>
+  </div>
 
-    <div class="heading-title">
-        <h1>نظام متابعة تأخير ومغادرات الطلاب</h1>
-        <p>نظام إلكتروني لتنظيم ومتابعة السجلات المدرسية</p>
-    </div>
+  <div class="heading-title">
+    <h1>نظام متابعة تأخير ومغادرات الطلاب</h1>
+    <p>نظام إلكتروني لتنظيم ومتابعة السجلات المدرسية</p>
+  </div>
 
 </header>
 
 <main class="app-container dashboard-page students-page">
-  <button
-  type="button"
-  id="sidebarOverlay"
-  class="sidebar-overlay"
-  aria-label="إغلاق القائمة"
-  tabindex="-1">
-</button>
 
-  <!-- القائمة الجانبية -->
-    <aside class="sidebar" >
-      <div class="sidebar-mobile-header">
-  <strong>القائمة الرئيسية</strong>
   <button
     type="button"
-    id="sidebarClose"
-    class="sidebar-close"
-    aria-label="إغلاق القائمة">
-    &times;
+    id="sidebarOverlay"
+    class="sidebar-overlay"
+    aria-label="إغلاق القائمة"
+    tabindex="-1">
   </button>
-</div>
 
-      <div class="sidebar-school">
-        <div class="school-avatar"></div>
+  <!-- القائمة الجانبية -->
+  <aside class="sidebar">
 
-        <div>
-          <strong id="sidebarSchoolName">المدرسة</strong>
-          <small>لوحة الإدارة</small>
-        </div>
+    <div class="sidebar-mobile-header">
+      <strong>القائمة الرئيسية</strong>
+      <button
+        type="button"
+        id="sidebarClose"
+        class="sidebar-close"
+        aria-label="إغلاق القائمة">
+        &times;
+      </button>
+    </div>
+
+    <div class="sidebar-school">
+      <div class="school-avatar"></div>
+      <div>
+        <strong id="sidebarSchoolName">المدرسة</strong>
+        <small>لوحة الإدارة</small>
       </div>
+    </div>
 
-      <p class="menu-caption">القائمة الرئيسية</p>
+    <p class="menu-caption">القائمة الرئيسية</p>
 
-      <button
-        type="button"
-        class="menu-item"
-        onclick="window.location.href='dashboard.html'">
-        ⌂
-        <span>لوحة التحكم</span>
-      </button>
+    <button
+      type="button"
+      class="menu-item"
+      onclick="window.location.href='dashboard.html'">
+      ⌂
+      <span>لوحة التحكم</span>
+    </button>
 
-      <button
-        type="button"
-        class="menu-item active"
-        onclick="window.location.href='late.html'">
-        ◷
-        <span>تسجيل تأخير</span>
-      </button>
+    <button
+      type="button"
+      class="menu-item active"
+      onclick="window.location.href='late.html'">
+      ◷
+      <span>تسجيل تأخير</span>
+    </button>
 
-      <button
-  type="button"
-  class="menu-item"
-  onclick="window.location.href='dashboard.html?view=departureForm'">
-  ↗
-  <span>تسجيل مغادرة</span>
-</button>
+    <button
+      type="button"
+      class="menu-item"
+      onclick="window.location.href='dashboard.html?view=departureForm'">
+      ↗
+      <span>تسجيل مغادرة</span>
+    </button>
 
-<button type="button" class="menu-item"
-        onclick="window.location.href='attendance.html'">
-  ☑ <span>تسجيل الغياب</span>
-</button>
+    <button
+      type="button"
+      class="menu-item"
+      onclick="window.location.href='attendance.html'">
+      ☑ <span>تسجيل الغياب</span>
+    </button>
 
-<button
-  type="button"
-  class="menu-item"
-  onclick="window.location.href='dashboard.html?view=lateLog'">
-  ▤
-  <span>سجل التأخيرات</span>
-</button>
+    <button
+      type="button"
+      class="menu-item"
+      onclick="window.location.href='dashboard.html?view=lateLog'">
+      ▤
+      <span>سجل التأخيرات</span>
+    </button>
 
-<button
-  type="button"
-  class="menu-item"
-  onclick="window.location.href='dashboard.html?view=departureLog'">
-  ▤
-  <span>سجل المغادرات</span>
-</button>
+    <button
+      type="button"
+      class="menu-item"
+      onclick="window.location.href='dashboard.html?view=departureLog'">
+      ▤
+      <span>سجل المغادرات</span>
+    </button>
 
-<button
-  type="button"
-  class="menu-item"
-  onclick="window.location.href='dashboard.html?view=reports'">
-  ▥
-  <span>التقارير</span>
-</button>
+    <button
+      type="button"
+      class="menu-item"
+      onclick="window.location.href='dashboard.html?view=reports'">
+      ▥
+      <span>التقارير</span>
+    </button>
 
- 
-      <button
-        type="button"
-        class="menu-item"
-        onclick="window.location.href='students.html'">
-        ♙
-        <span>إدارة الطلاب</span>
-      </button>
+    <button
+      type="button"
+      class="menu-item"
+      onclick="window.location.href='students.html'">
+      ♙
+      <span>إدارة الطلاب</span>
+    </button>
 
-      <button
-        type="button"
-        id="logoutBtn"
-        class="menu-item logout-item">
-        🚪
-        <span>تسجيل الخروج</span>
-      </button>
- 
+    <button
+      type="button"
+      id="logoutBtn"
+      class="menu-item logout-item">
+      🚪
+      <span>تسجيل الخروج</span>
+    </button>
 
   </aside>
 
@@ -605,7 +604,7 @@
           <p class="eyebrow">أهلًا وسهلًا</p>
           <h1 id="dashboardGreeting">لوحة تحكم المدرسة</h1>
           <p class="muted">
-            متابعة التأخير والمغادرةاليومية.
+            متابعة التأخير والمغادرة اليومية.
           </p>
         </div>
 
@@ -618,28 +617,29 @@
 
     </div>
 
-    <!-- معلومات المدرسة -->
-    <div class="school-banner">
-
-      <div>
-        <span class="banner-label">معلومات المدرسة</span>
-        <h2 id="dashboardSchoolName">اسم المدرسة</h2>
-        <p>
-          الرقم الوطني:
-          <strong id="dashboardSchoolCode">—</strong>
-        </p>
-      </div>
-
-      <div class="school-year">
-  <span>العام الدراسي</span>
-  <strong id="dashboardAcademicYear">2026 / 2027</strong>
-</div>
-
-    </div>
-
     <!-- لوحة التحكم الرئيسية -->
     <div id="view-home" class="dashboard-view">
 
+      <!-- معلومات المدرسة: تظهر في الرئيسية فقط -->
+      <div id="schoolInfoBanner" class="school-banner" hidden>
+
+        <div>
+          <span class="banner-label">معلومات المدرسة</span>
+          <h2 id="dashboardSchoolName">اسم المدرسة</h2>
+          <p>
+            الرقم الوطني:
+            <strong id="dashboardSchoolCode">—</strong>
+          </p>
+        </div>
+
+        <div class="school-year">
+          <span>العام الدراسي</span>
+          <strong id="dashboardAcademicYear">2026 / 2027</strong>
+        </div>
+
+      </div>
+
+      <!-- ملخص اليوم -->
       <div class="section-heading">
         <div>
           <h2>ملخص اليوم</h2>
@@ -704,412 +704,439 @@
 
     </div>
 
+    <!-- تسجيل مغادرة -->
+    <div id="view-departureForm" class="dashboard-view" hidden>
 
-<!-- تسجيل مغادرة داخل لوحة التحكم -->
-<div id="view-departureForm" class="dashboard-view" hidden>
-
-  <div class="section-heading">
-    <div>
-      <h2>تسجيل مغادرة</h2>
-      <p class="muted">تسجيل بيانات الطالب والشخص المرافق له وسبب المغادرة.</p>
-    </div>
-  </div>
-
-  <form id="departureForm" class="panel record-form">
-
-    <div class="form-row">
-      <div>
-        <label for="departureGrade">الصف والشعبة</label>
-        <select id="departureGrade" name="grade" required>
-          <option value="">يرجى اختيار الصف والشعبة</option>
-        </select>
+      <div class="section-heading">
+        <div>
+          <h2>تسجيل مغادرة</h2>
+          <p class="muted">
+            تسجيل بيانات الطالب والشخص المرافق له وسبب المغادرة.
+          </p>
+        </div>
       </div>
 
-      <div>
-        <label for="departureStudentName">اسم الطالب</label>
-        <select id="departureStudentName" name="studentName" required disabled>
-          <option value="">يرجى اختيار الصف أولًا</option>
-        </select>
-      </div>
-    </div>
+      <form id="departureForm" class="panel record-form">
 
-    <div class="form-row">
-      <div>
-        <label for="departureDate">تاريخ المغادرة</label>
-        <input id="departureDate" name="date" type="date" required>
-      </div>
+        <div class="form-row">
+          <div>
+            <label for="departureGrade">الصف والشعبة</label>
+            <select id="departureGrade" name="grade" required>
+              <option value="">يرجى اختيار الصف والشعبة</option>
+            </select>
+          </div>
 
-      <div>
-        <label for="departureTime">وقت المغادرة</label>
-        <input id="departureTime" name="time" type="time" required>
-      </div>
-    </div>
+          <div>
+            <label for="departureStudentName">اسم الطالب</label>
+            <select
+              id="departureStudentName"
+              name="studentName"
+              required
+              disabled>
+              <option value="">يرجى اختيار الصف أولًا</option>
+            </select>
+          </div>
+        </div>
 
-    <div>
-  <label for="guardianType">صلة القرابة </label>
-  <select id="guardianType" name="guardianType" required>
-    <option value="">يرجى اختيار صلة القرابة</option>
-    <option value="الأم">الأم</option>
-    <option value="الأب">الأب</option>
-    <option value="الأخ">الأخ</option>
-    <option value="شخص آخر">شخص آخر</option>
-  </select>
-</div>
+        <div class="form-row">
+          <div>
+            <label for="departureDate">تاريخ المغادرة</label>
+            <input
+              id="departureDate"
+              name="date"
+              type="date"
+              required>
+          </div>
 
-<div id="otherPersonFields" hidden>
-  <label for="otherPersonName">اسم الشخص المرافق للطالب</label>
-  <input
-    id="otherPersonName"
-    name="otherPersonName"
-    type="text"
-    placeholder="أدخل اسم الشخص المرافق للطالب"
-  >
-</div>
+          <div>
+            <label for="departureTime">وقت المغادرة</label>
+            <input
+              id="departureTime"
+              name="time"
+              type="time"
+              required>
+          </div>
+        </div>
 
-<div>
-  <label for="otherPersonPhone">رقم الهاتف </label>
-  <input
-    id="otherPersonPhone"
-    name="otherPersonPhone"
-    type="tel"
-    inputmode="tel"
-    placeholder="أدخل رقم الهاتف "
-    required>
-</div>
+        <div>
+          <label for="guardianType">صلة القرابة</label>
+          <select id="guardianType" name="guardianType" required>
+            <option value="">يرجى اختيار صلة القرابة</option>
+            <option value="الأم">الأم</option>
+            <option value="الأب">الأب</option>
+            <option value="الأخ">الأخ</option>
+            <option value="شخص آخر">شخص آخر</option>
+          </select>
+        </div>
 
-    
+        <div id="otherPersonFields" hidden>
+          <label for="otherPersonName">اسم الشخص المرافق للطالب</label>
+          <input
+            id="otherPersonName"
+            name="otherPersonName"
+            type="text"
+            placeholder="أدخل اسم الشخص المرافق للطالب">
+        </div>
 
-    <div>
-      <label for="departureReason">سبب المغادرة</label>
-      <textarea id="departureReason" name="reason"
-                rows="3" ></textarea>
-    </div>
+        <div>
+          <label for="otherPersonPhone">رقم الهاتف</label>
+          <input
+            id="otherPersonPhone"
+            name="otherPersonPhone"
+            type="tel"
+            inputmode="tel"
+            placeholder="أدخل رقم الهاتف"
+            required>
+        </div>
 
-    
+        <div>
+          <label for="departureReason">سبب المغادرة</label>
+          <textarea
+            id="departureReason"
+            name="reason"
+            rows="3"></textarea>
+        </div>
 
-    <button type="submit" id="saveDepartureBtn">
-      حفظ سجل المغادرة
-    </button>
+        <button type="submit" id="saveDepartureBtn">
+          حفظ سجل المغادرة
+        </button>
 
-    
+        <p
+          id="departureMessage"
+          class="muted"
+          role="status"
+          aria-live="polite">
+        </p>
 
-    <p id="departureMessage" class="muted"
-       role="status" aria-live="polite"></p>
-
-  </form>
-</div> 
-<!-- سجل التأخيرات -->
-<div id="view-lateLog" class="dashboard-view" hidden>
-
-  <div class="section-heading">
-    <div>
-      <h2>سجل التأخيرات</h2>
-      <p class="muted">متابعة تأخيرات الطلاب وإعداد التقارير الفردية.</p>
-    </div>
-  </div>
-
-  <!-- البحث واختيار الطالب -->
-  <div class="panel record-form">
-
-    <div class="form-row">
-      <div>
-        <label for="lateLogGrade">الصف والشعبة</label>
-        <select id="lateLogGrade">
-          <option value="">جميع الصفوف</option>
-        </select>
-      </div>
-
-      <div>
-        <label for="lateLogStudent">اسم الطالب</label>
-        <select id="lateLogStudent" disabled>
-          <option value="">يرجى اختيار الصف أولًا</option>
-        </select>
-      </div>
+      </form>
     </div>
 
+    <!-- سجل التأخيرات -->
+    <div id="view-lateLog" class="dashboard-view" hidden>
 
-    <p id="lateLogMessage" class="muted" role="status" aria-live="polite">
-      يرجى اختيار الصف والطالب لعرض سجل التأخيرات.
-    </p>
-
-  </div>
-
-  <!-- ملخص تأخيرات الطالب -->
-  <div class="stats-grid">
-
-    <div class="stat-card">
-      <h3>إجمالي مرات التأخير</h3>
-      <p id="studentLateTotal">0</p>
-      <div class="last-record-time">
-        اسم الطالب
-        <strong id="selectedLateStudent">لم يتم الاختيار</strong>
-      </div>
-    </div>
-
-    <div class="stat-card">
-      <h3>السبب الأكثر تكرارًا</h3>
-      <p id="studentTopReason" style="font-size: 24px;">—</p>
-      <div class="last-record-time">
-        عدد مرات التكرار
-        <strong id="studentTopReasonCount">0</strong>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- تقرير الطالب -->
-  <div class="panel">
-
-    <div class="section-heading">
-      <div>
-        <h2>تفاصيل التأخيرات</h2>
-        <p class="muted">جميع سجلات الطالب المحدد.</p>
+      <div class="section-heading">
+        <div>
+          <h2>سجل التأخيرات</h2>
+          <p class="muted">
+            متابعة تأخيرات الطلاب وإعداد التقارير الفردية.
+          </p>
+        </div>
       </div>
 
-      <button type="button" id="printLateReportBtn">
-        طباعة تقرير الطالب
-      </button>
-    </div>
+      <!-- البحث واختيار الطالب -->
+      <div class="panel record-form">
 
-    <div id="latePrintableReport">
+        <div class="form-row">
+          <div>
+            <label for="lateLogGrade">الصف والشعبة</label>
+            <select id="lateLogGrade">
+              <option value="">جميع الصفوف</option>
+            </select>
+          </div>
 
-      <div id="lateReportHeader" hidden>
-        <h2>تقرير تأخيرات طالب</h2>
-        <p id="printLateSchoolName">اسم المدرسة</p>
-        <p>اسم الطالب: <strong id="printStudentName">—</strong></p>
-        <p>الصف والشعبة: <strong id="printStudentGrade">—</strong></p>
-        <p>إجمالي مرات التأخير: <strong id="printStudentTotal">0</strong></p>
-        <p>السبب الأكثر تكرارًا: <strong id="printStudentTopReason">—</strong></p>
+          <div>
+            <label for="lateLogStudent">اسم الطالب</label>
+            <select id="lateLogStudent" disabled>
+              <option value="">يرجى اختيار الصف أولًا</option>
+            </select>
+          </div>
+        </div>
+
+        <p
+          id="lateLogMessage"
+          class="muted"
+          role="status"
+          aria-live="polite">
+          يرجى اختيار الصف والطالب لعرض سجل التأخيرات.
+        </p>
+
       </div>
 
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>الرقم</th>
-              <th>التاريخ</th>
-              <th>الوقت</th>
-              <th>سبب التأخير</th>
-              <th>الملاحظات</th>
-            </tr>
-          </thead>
+      <!-- ملخص تأخيرات الطالب -->
+      <div class="stats-grid">
 
-          <tbody id="lateRecordsBody">
-            <tr>
-              <td colspan="5" class="empty-state">
-                يرجى اختيار طالب لعرض سجلات التأخير.
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="stat-card">
+          <h3>إجمالي مرات التأخير</h3>
+          <p id="studentLateTotal">0</p>
+
+          <div class="last-record-time">
+            اسم الطالب
+            <strong id="selectedLateStudent">لم يتم الاختيار</strong>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <h3>السبب الأكثر تكرارًا</h3>
+          <p id="studentTopReason" style="font-size: 24px;">—</p>
+
+          <div class="last-record-time">
+            عدد مرات التكرار
+            <strong id="studentTopReasonCount">0</strong>
+          </div>
+        </div>
+
       </div>
 
-    </div>
+      <!-- تقرير الطالب -->
+      <div class="panel">
 
-  </div>
+        <div class="section-heading">
+          <div>
+            <h2>تفاصيل التأخيرات</h2>
+            <p class="muted">جميع سجلات الطالب المحدد.</p>
+          </div>
 
-</div>
+          <button type="button" id="printLateReportBtn">
+            طباعة تقرير الطالب
+          </button>
+        </div>
 
+        <div id="latePrintableReport">
 
-<!-- سجل المغادرات -->
-<div id="view-departureLog" class="dashboard-view" hidden>
+          <div id="lateReportHeader" hidden>
+            <h2>تقرير تأخيرات طالب</h2>
+            <p id="printLateSchoolName">اسم المدرسة</p>
+            <p>اسم الطالب: <strong id="printStudentName">—</strong></p>
+            <p>الصف والشعبة: <strong id="printStudentGrade">—</strong></p>
+            <p>إجمالي مرات التأخير: <strong id="printStudentTotal">0</strong></p>
+            <p>السبب الأكثر تكرارًا: <strong id="printStudentTopReason">—</strong></p>
+          </div>
 
-  <div class="section-heading">
-    <div>
-      <h2>سجل المغادرات</h2>
-      <p class="muted">متابعة مغادرات الطلاب وإعداد التقارير الفردية.</p>
-    </div>
-  </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>الرقم</th>
+                  <th>التاريخ</th>
+                  <th>الوقت</th>
+                  <th>سبب التأخير</th>
+                  <th>الملاحظات</th>
+                </tr>
+              </thead>
 
-  <!-- البحث واختيار الطالب -->
-  <div class="panel record-form">
+              <tbody id="lateRecordsBody">
+                <tr>
+                  <td colspan="5" class="empty-state">
+                    يرجى اختيار طالب لعرض سجلات التأخير.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-    <div class="form-row">
-      <div>
-        <label for="departureLogGrade">الصف والشعبة</label>
-        <select id="departureLogGrade">
-          <option value="">جميع الصفوف</option>
-        </select>
-      </div>
-
-      <div>
-        <label for="departureLogStudent">اسم الطالب</label>
-        <select id="departureLogStudent" disabled>
-          <option value="">يرجى اختيار الصف أولًا</option>
-        </select>
-      </div>
-    </div>
-
-    <div>
-      <label for="departureLogSearch">البحث عن طالب</label>
-      <input
-        id="departureLogSearch"
-        type="search"
-        placeholder="اكتب اسم الطالب للبحث">
-    </div>
-
-    <p id="departureLogMessage" class="muted" role="status" aria-live="polite">
-      يرجى اختيار الصف والطالب لعرض سجل المغادرات.
-    </p>
-
-  </div>
-
-  <!-- ملخص مغادرات الطالب -->
-  <div class="stats-grid">
-
-    <div class="stat-card">
-      <h3>إجمالي مرات المغادرة</h3>
-      <p id="studentDepartureTotal">0</p>
-
-      <div class="last-record-time">
-        اسم الطالب
-        <strong id="selectedDepartureStudent">لم يتم الاختيار</strong>
-      </div>
-    </div>
-  </div>
-
-  <!-- تقرير الطالب -->
-  <div class="panel">
-
-    <div class="section-heading">
-      <div>
-        <h2>تفاصيل المغادرات</h2>
-        <p class="muted">جميع سجلات مغادرة الطالب المحدد.</p>
-      </div>
-
-      <button type="button" id="printDepartureReportBtn">
-        طباعة تقرير الطالب
-      </button>
-    </div>
-
-    <div id="departurePrintableReport">
-
-      <div id="departureReportHeader" hidden>
-        <h2>تقرير مغادرات طالب</h2>
-        <p id="printDepartureSchoolName">اسم المدرسة</p>        <p>اسم الطالب: <strong id="printDepartureStudentName">—</strong></p>
-        <p>الصف والشعبة: <strong id="printDepartureStudentGrade">—</strong></p>
-        <p>إجمالي مرات المغادرة: <strong id="printDepartureStudentTotal">0</strong></p>
-      </div>
-
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>الرقم</th>
-              <th>التاريخ</th>
-              <th>الوقت</th>
-              <th>سبب المغادرة</th>
-              <th>صلة المستلم</th>
-              <th>اسم المستلم</th>
-              <th>رقم الهاتف</th>
-            </tr>
-          </thead>
-
-          <tbody id="departureRecordsBody">
-            <tr>
-              <td colspan="7" class="empty-state">
-                يرجى اختيار طالب لعرض سجلات مغادرتها.
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        </div>
       </div>
 
     </div>
 
-  </div>
+    <!-- سجل المغادرات -->
+    <div id="view-departureLog" class="dashboard-view" hidden>
 
-</div>
-    
-<!-- التقارير -->
-<div id="view-reports" class="dashboard-view" hidden>
-  <div class="section-heading">
-    <h2>التقارير</h2>
-  </div>
-
-  <div class="panel report-filters">
-
-    <!-- نوع التقرير -->
-    <div class="form-row">
-      <div>
-        <label for="reportType">نوع التقرير</label>
-        <select id="reportType">
-          <option value="all">جميع السجلات</option>
-          <option value="late">تقرير التأخير</option>
-          <option value="departure">تقرير المغادرة</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- الفترة الزمنية -->
-    <div class="form-row">
-      <div>
-        <label for="reportFrom">من تاريخ</label>
-        <input id="reportFrom" type="date">
+      <div class="section-heading">
+        <div>
+          <h2>سجل المغادرات</h2>
+          <p class="muted">
+            متابعة مغادرات الطلاب وإعداد التقارير الفردية.
+          </p>
+        </div>
       </div>
 
-      <div>
-        <label for="reportTo">إلى تاريخ</label>
-        <input id="reportTo" type="date">
+      <!-- البحث واختيار الطالب -->
+      <div class="panel record-form">
+
+        <div class="form-row">
+          <div>
+            <label for="departureLogGrade">الصف والشعبة</label>
+            <select id="departureLogGrade">
+              <option value="">جميع الصفوف</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="departureLogStudent">اسم الطالب</label>
+            <select id="departureLogStudent" disabled>
+              <option value="">يرجى اختيار الصف أولًا</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label for="departureLogSearch">البحث عن طالب</label>
+          <input
+            id="departureLogSearch"
+            type="search"
+            placeholder="اكتب اسم الطالب للبحث">
+        </div>
+
+        <p
+          id="departureLogMessage"
+          class="muted"
+          role="status"
+          aria-live="polite">
+          يرجى اختيار الصف والطالب لعرض سجل المغادرات.
+        </p>
+
+      </div>
+
+      <!-- ملخص مغادرات الطالب -->
+      <div class="stats-grid">
+
+        <div class="stat-card">
+          <h3>إجمالي مرات المغادرة</h3>
+          <p id="studentDepartureTotal">0</p>
+
+          <div class="last-record-time">
+            اسم الطالب
+            <strong id="selectedDepartureStudent">لم يتم الاختيار</strong>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- تقرير الطالب -->
+      <div class="panel">
+
+        <div class="section-heading">
+          <div>
+            <h2>تفاصيل المغادرات</h2>
+            <p class="muted">
+              جميع سجلات مغادرة الطالب المحدد.
+            </p>
+          </div>
+
+          <button type="button" id="printDepartureReportBtn">
+            طباعة تقرير الطالب
+          </button>
+        </div>
+
+        <div id="departurePrintableReport">
+
+          <div id="departureReportHeader" hidden>
+            <h2>تقرير مغادرات طالب</h2>
+            <p id="printDepartureSchoolName">اسم المدرسة</p>
+            <p>اسم الطالب: <strong id="printDepartureStudentName">—</strong></p>
+            <p>الصف والشعبة: <strong id="printDepartureStudentGrade">—</strong></p>
+            <p>إجمالي مرات المغادرة: <strong id="printDepartureStudentTotal">0</strong></p>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>الرقم</th>
+                  <th>التاريخ</th>
+                  <th>الوقت</th>
+                  <th>سبب المغادرة</th>
+                  <th>صلة المستلم</th>
+                  <th>اسم المستلم</th>
+                  <th>رقم الهاتف</th>
+                </tr>
+              </thead>
+
+              <tbody id="departureRecordsBody">
+                <tr>
+                  <td colspan="7" class="empty-state">
+                    يرجى اختيار طالب لعرض سجلات المغادرة.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- التقارير -->
+    <div id="view-reports" class="dashboard-view" hidden>
+
+      <div class="section-heading">
+        <h2>التقارير</h2>
+      </div>
+
+      <div class="panel report-filters">
+
+        <!-- نوع التقرير -->
+        <div class="form-row">
+          <div>
+            <label for="reportType">نوع التقرير</label>
+            <select id="reportType">
+              <option value="all">جميع السجلات</option>
+              <option value="late">تقرير التأخير</option>
+              <option value="departure">تقرير المغادرة</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- الفترة الزمنية -->
+        <div class="form-row">
+          <div>
+            <label for="reportFrom">من تاريخ</label>
+            <input id="reportFrom" type="date">
+          </div>
+
+          <div>
+            <label for="reportTo">إلى تاريخ</label>
+            <input id="reportTo" type="date">
+          </div>
+        </div>
+
+        <!-- اختيار الصف -->
+        <div class="form-row">
+          <div>
+            <label for="reportGrade">الصف</label>
+            <select id="reportGrade">
+              <option value="all">جميع الصفوف</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- أزرار التقرير -->
+        <div class="report-buttons">
+          <button type="button" id="generateReportBtn">
+            عرض التقرير
+          </button>
+
+          <button
+            type="button"
+            id="exportReportBtn"
+            class="secondary-btn">
+            📊 تصدير Excel
+          </button>
+        </div>
+
+        <p id="reportMessage" class="muted">
+          يرجى اختيار نوع التقرير والصف والفترة الزمنية، ثم الضغط على عرض التقرير.
+        </p>
+
+        <!-- جدول نتائج التقرير -->
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>اسم الطالب</th>
+                <th>الصف</th>
+                <th>نوع السجل</th>
+                <th>التاريخ</th>
+                <th>الوقت</th>
+                <th>السبب</th>
+                <th>الملاحظات</th>
+              </tr>
+            </thead>
+
+            <tbody id="reportRecordsBody">
+              <tr>
+                <td colspan="7" class="empty-state">
+                  يرجى اختيار الخيارات ثم الضغط على عرض التقرير.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
       </div>
     </div>
-
-    <!-- اختيار الصف -->
-    <div class="form-row">
-      <div>
-        <label for="reportGrade">الصف</label>
-        <select id="reportGrade">
-          <option value="all">جميع الصفوف</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- أزرار التقرير -->
-    <div class="report-buttons">
-      <button type="button" id="generateReportBtn">
-        عرض التقرير
-      </button>
-
-      <button
-        type="button"
-        id="exportReportBtn"
-        class="secondary-btn">
-        📊 تصدير Excel
-      </button>
-    </div>
-
-
-    <p id="reportMessage" class="muted">
-      يرجى اختيار نوع التقرير والصف والفترة الزمنية، ثم الضغط على عرض التقرير.
-    </p>
-
-    <!-- جدول نتائج التقرير -->
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>اسم الطالب</th>
-            <th>الصف</th>
-            <th>نوع السجل</th>
-            <th>التاريخ</th>
-            <th>الوقت</th>
-            <th>السبب</th>
-            <th>الملاحظات</th>
-          </tr>
-        </thead>
-
-        <tbody id="reportRecordsBody">
-          <tr>
-            <td colspan="7" class="empty-state">
-              يرجى اختيار الخيارات ثم الضغط على عرض التقرير.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-  </div>
-</div>
 
   </section>
 
@@ -1119,6 +1146,7 @@
   <p>سالي موسى العمرات / مدرسة كفرسوم الثانوية الشاملة للبنات</p>
   <p>© 2026</p>
 </footer>
+
 <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
 <script type="module" src="dashboard.js"></script>
 <script src="sidebar.js"></script>

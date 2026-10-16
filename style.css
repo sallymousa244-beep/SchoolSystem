@@ -1983,3 +1983,6 @@ footer {
     .attendance-page .attendance-form-grid { grid-template-columns: minmax(0, 1fr); gap: 17px; }
     .attendance-page .attendance-panel-heading h2 { font-size: 18px; }
 }
+#schoolInfoBanner[hidden] {
+  display: none !important;
+}

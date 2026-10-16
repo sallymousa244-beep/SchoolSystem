@@ -161,6 +161,8 @@ const dashboardLayout = document.querySelector(".dashboard-page");
 
 dashboardLayout?.classList.add("sidebar-collapsed");
 
+
+
 function showDashboardView(target) {
   const targetView = document.getElementById(`view-${target}`);
 
@@ -176,7 +178,14 @@ function showDashboardView(target) {
   document.querySelectorAll(".menu-item[data-view]").forEach((item) => {
     item.classList.toggle("active", item.dataset.view === target);
   });
+
+  const schoolInfoBanner = document.getElementById("schoolInfoBanner");
+
+  if (schoolInfoBanner) {
+    schoolInfoBanner.hidden = target !== "home";
+  }
 }
+
 
 document.querySelectorAll(".menu-item[data-view]").forEach((button) => {
   button.addEventListener("click", () => {
