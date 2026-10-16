@@ -1,0 +1,545 @@
+
+/* =====================================
+   صفحة تسجيل الحضور والغياب
+   ===================================== */
+
+.attendance-page {
+  direction: rtl;
+  text-align: right;
+}
+
+.attendance-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.attendance-layout .sidebar {
+  flex-shrink: 0;
+}
+
+.attendance-layout .dashboard-main {
+  flex: 1;
+  min-width: 0;
+  padding-bottom: 35px;
+}
+
+/* عنوان الصفحة */
+
+.attendance-page .dashboard-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.attendance-page .dashboard-heading h1 {
+  margin: 0 0 8px;
+  font-size: 27px;
+  line-height: 1.5;
+}
+
+.attendance-page .dashboard-heading p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.8;
+}
+
+.attendance-today {
+  flex-shrink: 0;
+  min-width: 145px;
+  padding: 14px 18px;
+  border: 1px solid #dce7ee;
+  border-radius: 14px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.attendance-today span {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.attendance-today strong {
+  color: #24445b;
+  font-size: 15px;
+}
+
+/* البطاقات */
+
+.attendance-page .attendance-panel {
+  background: #ffffff;
+  border: 1px solid #e1e8ef;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 16px rgba(30, 55, 75, 0.05);
+}
+
+.attendance-panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.attendance-panel-heading h2 {
+  color: #24445b;
+  font-size: 20px;
+  margin: 0 0 7px;
+}
+
+.attendance-panel-heading p {
+  color: #718096;
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* حقول النموذج والفلاتر */
+
+.attendance-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.attendance-page .form-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 8px;
+  margin-bottom: 0;
+}
+
+.attendance-page .form-group label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #334155;
+}
+
+.attendance-page .form-group input,
+.attendance-page .form-group select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #d5dee7;
+  border-radius: 9px;
+  background-color: #fff;
+  color: #243746;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.attendance-page .form-group input:focus,
+.attendance-page .form-group select:focus {
+  border-color: #5d9bb8;
+  box-shadow: 0 0 0 3px rgba(93, 155, 184, 0.13);
+}
+
+.attendance-page .form-group input:disabled,
+.attendance-page .form-group select:disabled {
+  background: #f1f5f9;
+  cursor: not-allowed;
+}
+
+.status-preview {
+  min-height: 44px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px dashed #cbd5e1;
+  border-radius: 9px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* الأزرار */
+
+.attendance-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.attendance-page .btn-primary,
+.attendance-page .btn-secondary {
+  min-height: 42px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.attendance-page .btn-primary {
+  color: #fff;
+  background: #2f718f;
+}
+
+.attendance-page .btn-primary:hover {
+  background: #245b75;
+}
+
+.attendance-page .btn-secondary {
+  color: #334155;
+  background: #eaf0f5;
+}
+
+.attendance-page .btn-secondary:hover {
+  background: #dce6ee;
+}
+
+.attendance-page .btn-primary:disabled,
+.attendance-page .btn-secondary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* رسائل الحالة */
+
+.attendance-message {
+  margin: 16px 0 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #475569;
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.attendance-message:empty {
+  display: none;
+}
+
+.attendance-message.success {
+  color: #166534;
+  background: #f0fdf4;
+}
+
+.attendance-message.error {
+  color: #991b1b;
+  background: #fef2f2;
+}
+
+.attendance-message.info {
+  color: #1e40af;
+  background: #eff6ff;
+}
+
+/* الجداول */
+
+.attendance-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.attendance-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.attendance-table th,
+.attendance-table td {
+  padding: 13px 14px;
+  border-bottom: 1px solid #edf1f5;
+  text-align: right;
+  vertical-align: middle;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.attendance-table th {
+  background: #f0f6f9;
+  color: #24445b;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.attendance-table tbody tr:hover {
+  background: #f8fbfd;
+}
+
+.attendance-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.attendance-table td[colspan] {
+  padding: 24px;
+  color: #64748b;
+  text-align: center;
+}
+
+/* شارات الحالات التي قد يستخدمها JavaScript */
+
+.attendance-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-absence {
+  color: #b91c1c;
+  background: #fee2e2;
+}
+
+.status-departure {
+  color: #92400e;
+  background: #fef3c7;
+}
+
+.status-present {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.status-pending {
+  color: #475569;
+  background: #e2e8f0;
+}
+
+.attendance-record-count {
+  margin: 14px 0 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.attendance-record-count strong {
+  color: #24445b;
+}
+
+/* الفلاتر */
+
+.attendance-filters {
+  margin-bottom: 4px;
+}
+
+/* الشاشات المتوسطة */
+
+@media (max-width: 1000px) {
+  .attendance-layout {
+    gap: 16px;
+  }
+
+  .attendance-page .attendance-panel {
+    padding: 18px;
+  }
+
+  .attendance-page .dashboard-heading h1 {
+    font-size: 23px;
+  }
+}
+
+/* الهواتف */
+
+@media (max-width: 700px) {
+  .attendance-layout {
+    display: block;
+  }
+
+  .attendance-layout .dashboard-main {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px 10px 28px;
+  }
+
+  .attendance-page .dashboard-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 18px;
+  }
+
+  .attendance-page .dashboard-heading h1 {
+    font-size: 21px;
+  }
+
+  .attendance-today {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .attendance-page .attendance-panel {
+    padding: 15px;
+    margin-bottom: 18px;
+    border-radius: 12px;
+  }
+
+  .attendance-panel-heading h2 {
+    font-size: 18px;
+  }
+
+  .attendance-form-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .attendance-actions {
+    flex-direction: column;
+  }
+
+  .attendance-page .btn-primary,
+  .attendance-page .btn-secondary {
+    width: 100%;
+  }
+
+  .attendance-table {
+    min-width: 700px;
+  }
+}
+
+.status-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.status-filters > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 220px;
+  flex: 1;
+}
+
+.status-filters label {
+  font-weight: 600;
+}
+
+.status-filters select {
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* توسيع محتوى صفحة الغياب فقط */
+.attendance-page .attendance-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.attendance-page .attendance-layout .sidebar {
+  flex: 0 0 250px;
+  min-width: 0;
+}
+
+.attendance-page .attendance-layout .dashboard-main {
+  flex: 1 1 0;
+  width: 0;
+  max-width: none;
+  min-width: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.attendance-page .attendance-panel,
+.attendance-page .attendance-table-wrap {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 700px) {
+  .attendance-page .attendance-layout {
+    display: block;
+    padding: 12px;
+  }
+
+  .attendance-page .attendance-layout .sidebar {
+    width: 100%;
+  }
+
+  .attendance-page .attendance-layout .dashboard-main {
+    width: 100%;
+    padding: 16px 0 28px;
+  }
+}
+/* توسيع صفحة الغياب على عرض الشاشة */
+body.attendance-page {
+  width: 100%;
+  margin: 0;
+}
+
+.attendance-page .app-container.attendance-layout {
+  display: flex !important;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 20px !important;
+  box-sizing: border-box;
+}
+
+.attendance-page .app-container.attendance-layout > .sidebar {
+  flex: 0 0 250px;
+  width: 250px;
+  box-sizing: border-box;
+}
+
+.attendance-page .app-container.attendance-layout > .dashboard-main {
+  flex: 1 1 0;
+  min-width: 0;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  box-sizing: border-box;
+}
+
+.attendance-page .dashboard-main .attendance-panel {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+.attendance-page .attendance-table-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+@media (max-width: 700px) {
+  .attendance-page .app-container.attendance-layout {
+    display: block !important;
+    padding: 12px !important;
+  }
+
+  .attendance-page .app-container.attendance-layout > .sidebar {
+    width: 100%;
+  }
+
+  .attendance-page .app-container.attendance-layout > .dashboard-main {
+    width: 100% !important;
+  }
+}

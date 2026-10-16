@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة تأخير ومغادرات مدارس لواء بني كنانة</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="school-heading" dir="rtl">
+
+    <div class="heading-school-icon">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M10 40 L50 12 L90 40"
+                  fill="none" stroke="currentColor"
+                  stroke-width="5" stroke-linejoin="round"/>
+
+            <rect x="18" y="40" width="64" height="48"
+                  rx="3" fill="none"
+                  stroke="currentColor" stroke-width="4"/>
+
+            <rect x="42" y="61" width="16" height="27"
+                  fill="none" stroke="currentColor"
+                  stroke-width="3"/>
+
+            <rect x="26" y="49" width="11" height="10"
+                  fill="none" stroke="currentColor"
+                  stroke-width="3"/>
+
+            <rect x="63" y="49" width="11" height="10"
+                  fill="none" stroke="currentColor"
+                  stroke-width="3"/>
+        </svg>
+    </div>
+
+    <div class="heading-ministry">
+        <h2>وزارة التربية والتعليم</h2>
+        <h3>لواء بني كنانة</h3>
+    </div>
+
+    <div class="heading-title">
+        <h1>نظام متابعة تأخير ومغادرات الطلاب</h1>
+        <p>نظام إلكتروني لتنظيم ومتابعة السجلات المدرسية</p>
+    </div>
+
+</header>
+
+    <main>
+        <!-- الصفحة الرئيسية -->
+        <section id="welcome" class="page welcome">
+            <h1>أهلًا بك في نظام متابعة تأخير ومغادرة الطلاب </h1>
+            <p>إدارة سجلات تأخير الطلاب ومغادرتهن بسهولة وأمان.</p>
+
+            <div class="buttons">
+                <button type="button" onclick="showPage('register')">
+                    تسجيل مدرسة جديدة
+                </button>
+
+                <button type="button" class="login-btn"
+                        onclick="showPage('login')">
+                    تسجيل الدخول  
+                </button>
+            </div>
+        </section>
+
+        <!-- تسجيل مدرسة جديدة -->
+        <section id="register" class="page" hidden>
+            <h2>تسجيل مدرسة جديدة</h2>
+            <p>أدخل بيانات المدرسة لإنشاء حساب جديد.</p>
+
+            <form id="registerForm">
+                <label for="schoolName">اسم المدرسة</label>
+                <input id="schoolName" type="text"
+                       placeholder="أدخل اسم المدرسة" required>
+
+                <label for="schoolCode">الرقم الوطني للمدرسة</label>
+                <input id="schoolCode" type="text" inputmode="numeric"
+                       placeholder="أدخل الرقم الوطني" required>
+
+                <label for="registerPassword">كلمة المرور</label>
+                <input id="registerPassword" type="password"
+                       minlength="6" placeholder="أنشئ كلمة مرور"
+                       required>
+
+                <label for="confirmPassword">تأكيد كلمة المرور</label>
+                <input id="confirmPassword" type="password"
+                       minlength="6" placeholder="أعد إدخال كلمة المرور"
+                       required>
+
+                <button type="submit">إنشاء الحساب</button>
+                <button type="button" class="back-btn"
+                        onclick="showPage('welcome')">رجوع</button>
+            </form>
+        </section>
+
+        <!-- تسجيل الدخول -->
+        <section id="login" class="page" hidden>
+            <h2>دخول المدرسة</h2>
+            <p>أدخل الرقم الوطني للمدرسة وكلمة المرور.</p>
+
+            <form id="loginForm">
+                <label for="loginUsername">الرقم الوطني للمدرسة</label>
+                <input id="loginUsername" type="text"
+                       inputmode="numeric" placeholder="الرقم الوطني"
+                       required>
+
+                <label for="loginPassword">كلمة المرور</label>
+                <input id="loginPassword" type="password"
+                       placeholder="كلمة المرور" required>
+
+                <button type="submit">تسجيل الدخول</button>
+                <button type="button" class="back-btn"
+                        onclick="showPage('welcome')">رجوع</button>
+            </form>
+        </section>
+
+        <!-- لوحة التحكم -->
+        <section id="dashboard" class="page" hidden>
+            <h1>لوحة تحكم المدرسة</h1>
+            <p>أهلًا بك في نظام إدارة المدارس.</p>
+
+            <div class="school-info">
+                <h3 id="dashboardSchoolName">اسم المدرسة</h3>
+                <p> الرقم الوطني للمدرسة:
+                    <strong id="dashboardSchoolCode"></strong>
+                </p>
+            </div>
+
+            <div class="dashboard-cards">
+                <button type="button"
+                        onclick="showPage('students')">
+                    <span>👩‍🎓</span>
+                    <strong>إدارة الطلاب</strong>
+                    <small>إضافة الطلاب وعرض الأسماء</small>
+                </button>
+
+                <button type="button"
+                        onclick="showPage('records')">
+                    <span>📋</span>
+                    <strong>سجلات التأخير والمغادرة</strong>
+                    <small>تسجيل التأخير والمغادرة ومراجعة السجلات</small>
+                </button>
+            </div>
+
+            <button type="button" class="back-btn"
+                    onclick="logoutSchool()">
+                تسجيل الخروج
+            </button>
+        </section>
+
+        <!-- صفحة إدارة الطلاب -->
+        <section id="students" class="page" hidden>
+            <h2>إدارة الطلاب</h2>
+            <p>هذه الصفحة مخصصة لإضافة الطلاب والبحث عن الأسماء.</p>
+            <button type="button" onclick="showPage('dashboard')">
+                العودة إلى لوحة التحكم
+            </button>
+        </section>
+
+        <!-- صفحة السجلات -->
+        <section id="records" class="page" hidden>
+            <h2>سجلات التأخير والمغادرة</h2>
+            <button type="button" onclick="showPage('dashboard')">
+                العودة إلى لوحة التحكم
+            </button>
+        </section>
+    </main>
+
+    <footer>
+  <p>  سالي موسى العمرات / مدرسة كفرسوم الثانوية الشاملة للبنات</p>
+  <p>© 2026</p>
+</footer>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

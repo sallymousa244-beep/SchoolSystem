@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>تسجيل التأخير | نظام إدارة المدارس</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="school-heading" dir="rtl">
+
+    <div class="heading-school-icon">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M10 40 L50 12 L90 40"
+                  fill="none" stroke="currentColor"
+                  stroke-width="5" stroke-linejoin="round"/>
+
+            <rect x="18" y="40" width="64" height="48"
+                  rx="3" fill="none"
+                  stroke="currentColor" stroke-width="4"/>
+
+            <rect x="42" y="61" width="16" height="27"
+                  fill="none" stroke="currentColor"
+                  stroke-width="3"/>
+
+            <rect x="26" y="49" width="11" height="10"
+                  fill="none" stroke="currentColor"
+                  stroke-width="3"/>
+
+            <rect x="63" y="49" width="11" height="10"
+                  fill="none" stroke="currentColor"
+                  stroke-width="3"/>
+        </svg>
+    </div>
+
+    <div class="heading-ministry">
+        <h2>وزارة التربية والتعليم</h2>
+        <h3>لواء بني كنانة</h3>
+    </div>
+
+    <div class="heading-title">
+        <h1>نظام متابعة تأخير ومغادرات الطلاب</h1>
+        <p>نظام إلكتروني لتنظيم ومتابعة السجلات المدرسية</p>
+    </div>
+
+</header>
+
+  <!-- الحاوية الرئيسية -->
+  <main class="app-container dashboard-page students-page">
+
+    <!-- القائمة الجانبية -->
+    <aside class="sidebar">
+
+      <div class="sidebar-school">
+        <div class="school-avatar"></div>
+
+        <div>
+          <strong id="sidebarSchoolName">المدرسة</strong>
+          <small>لوحة الإدارة</small>
+        </div>
+      </div>
+
+      <p class="menu-caption">القائمة الرئيسية</p>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="window.location.href='dashboard.html'">
+        ⌂
+        <span>لوحة التحكم</span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-item active"
+        onclick="window.location.href='late.html'">
+        ◷
+        <span>تسجيل تأخير</span>
+      </button>
+
+      <button
+  type="button"
+  class="menu-item"
+  onclick="window.location.href='dashboard.html?view=departureForm'">
+  ↗
+  <span>تسجيل مغادرة</span>
+</button>
+
+<button type="button" class="menu-item"
+        onclick="window.location.href='attendance.html'">
+  ☑ <span>تسجيل الغياب</span>
+</button>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="window.location.href='dashboard.html?view=lateLog'">
+        ▤
+        <span>سجل التأخيرات</span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="window.location.href='dashboard.html?view=departureLog'">
+        ▤
+        <span>سجل المغادرات</span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="window.location.href='dashboard.html?view=reports'">
+        ▥
+        <span>التقارير</span>
+      </button>
+
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="window.location.href='students.html'">
+        ♙
+        <span>إدارة الطلاب</span>
+      </button>
+
+      <button
+        type="button"
+        id="logoutBtn"
+        class="menu-item logout-item">
+        🚪
+        <span>تسجيل الخروج</span>
+      </button>
+
+    </aside>
+
+    <!-- المحتوى الرئيسي -->
+    <section class="dashboard-main">
+
+      <!-- عنوان الصفحة -->
+      <div class="dashboard-heading">
+
+        <div class="heading-start">
+
+          <button
+            type="button"
+            id="sidebarToggle"
+            class="sidebar-toggle"
+            aria-label="إظهار أو إخفاء القائمة"
+            aria-expanded="true"
+            title="إظهار أو إخفاء القائمة">
+            ☰
+          </button>
+
+          <div>
+            <p class="eyebrow">إدارة شؤون الطلاب</p>
+
+            <h1>تسجيل تأخير طالب</h1>
+
+            <p class="muted">
+              يرجى اختيار الصف والشعبة ثم اسم الطالب وتسجيل بيانات التأخير.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      
+
+      <!-- نموذج تسجيل التأخير -->
+      <form id="lateForm" class="panel record-form">
+
+        <!-- الصف والشعبة -->
+        <label for="lateGrade">الصف والشعبة</label>
+
+        <select id="lateGrade" required>
+          <option value="">اختيار الصف والشعبة</option>
+        </select>
+
+        <!-- اسم الطالب -->
+        <label for="lateStudentName">اسم الطالب</label>
+
+        <select id="lateStudentName" required disabled>
+          <option value="">يرجى اختيار الصف أولًا</option>
+        </select>
+
+        <!-- التاريخ والوقت -->
+        <div class="form-row">
+
+          <div>
+            <label for="lateDate">تاريخ التسجيل</label>
+
+            <input
+              id="lateDate"
+              type="date"
+              readonly
+              required>
+          </div>
+
+          <div>
+            <label for="lateTime">وقت التسجيل</label>
+
+            <input
+              id="lateTime"
+              type="time"
+              readonly
+              required>
+          </div>
+
+        </div>
+
+        <!-- سبب التأخير -->
+        <label for="lateReason">سبب التأخير</label>
+
+        <select id="lateReason" >
+          <option value="">اختيار سبب التأخير</option>
+          <option value="الازدحام">الازدحام</option>
+          <option value="المواصلات">المواصلات</option>
+          <option value="ظرف عائلي">ظرف عائلي</option>
+          <option value="بدون سبب">بدون سبب</option>
+          <option value="سبب آخر">سبب آخر</option>
+        </select>
+
+        <!-- الملاحظات -->
+        <label for="lateNotes">
+          ملاحظات إضافية في حال اختيار سبب آخر
+        </label>
+
+        <textarea
+          id="lateNotes"
+          rows="3"
+          placeholder="اكتبي تفاصيل سبب التأخير إن لزم الأمر"></textarea>
+
+        <!-- أزرار النموذج -->
+        <div class="form-row">
+
+          <button type="submit" id="saveLateBtn">
+            حفظ سجل التأخير
+          </button>
+
+          <a href="dashboard.html" class="secondary-btn">
+            إلغاء
+          </a>
+
+        </div>
+
+        <!-- رسائل النظام -->
+        <p
+          id="lateMessage"
+          role="status"
+          aria-live="polite">
+        </p>
+
+      </form>
+
+    </section>
+
+  </main>
+
+  <!-- التذييل -->
+  <footer>
+    <p>سالي موسى العمرات / مدرسة كفرسوم الثانوية الشاملة للبنات</p>
+    <p>© 2026</p>
+  </footer>
+
+  <!-- ملفات JavaScript -->
+  <script src="sidebar.js"></script>
+  <script type="module" src="late.js"></script>
+
+</body>
+</html>

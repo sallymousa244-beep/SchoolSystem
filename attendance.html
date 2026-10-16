@@ -1,0 +1,265 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل حضور وغياب الطلبة</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="attendance-page.css">
+</head>
+
+<body class="attendance-page">
+
+  <header class="school-heading">
+    <div class="heading-ministry">
+      <h2>وزارة التربية والتعليم</h2>
+      <h3>مديرية التربية والتعليم للواء بني كنانة</h3>
+    </div>
+
+    <div class="heading-title">
+      <h1>نظام متابعة التأخير والمغادرات والغياب</h1>
+      <p>إدارة السجلات المدرسية ومتابعتها إلكترونيًا</p>
+    </div>
+  </header>
+
+  <!-- الحاوية الرئيسية -->
+  <main class="app-container dashboard-page students-page attendance-layout">
+
+    <!-- القائمة الجانبية -->
+    <aside class="sidebar">
+
+      <div class="sidebar-school">
+        <div class="school-avatar"></div>
+        <div>
+          <strong id="sidebarSchoolName">المدرسة</strong>
+          <small>لوحة الإدارة</small>
+        </div>
+      </div>
+
+      <p class="menu-caption">القائمة الرئيسية</p>
+
+      <button type="button" class="menu-item"
+        onclick="window.location.href='dashboard.html'">
+        ⌂ <span>لوحة التحكم</span>
+      </button>
+
+      <button type="button" class="menu-item"
+        onclick="window.location.href='late.html'">
+        ◷ <span>تسجيل تأخير</span>
+      </button>
+
+      <button type="button" class="menu-item"
+        onclick="window.location.href='dashboard.html?view=departureForm'">
+        ↗ <span>تسجيل مغادرة</span>
+      </button>
+
+      <button type="button" class="menu-item active"
+        onclick="window.location.href='attendance.html'">
+        ☑ <span>تسجيل الغياب</span>
+      </button>
+
+      <button type="button" class="menu-item"
+        onclick="window.location.href='dashboard.html?view=lateLog'">
+        ▤ <span>سجل التأخيرات</span>
+      </button>
+
+      <button type="button" class="menu-item"
+        onclick="window.location.href='dashboard.html?view=departureLog'">
+        ▤ <span>سجل المغادرات</span>
+      </button>
+
+      <button type="button" class="menu-item"
+        onclick="window.location.href='dashboard.html?view=reports'">
+        ▥ <span>التقارير</span>
+      </button>
+
+      <button type="button" class="menu-item"
+        onclick="window.location.href='students.html'">
+        ♙ <span>إدارة الطلاب</span>
+      </button>
+
+      <button type="button" id="logoutBtn" class="menu-item logout-item">
+        🚪 <span>تسجيل الخروج</span>
+      </button>
+
+    </aside>
+
+    <!-- المحتوى الرئيسي: قسم واحد فقط -->
+    <section class="dashboard-main">
+
+      <!-- عنوان الصفحة -->
+      <div class="dashboard-heading">
+
+        <div class="heading-start">
+          <button
+            type="button"
+            id="sidebarToggle"
+            class="sidebar-toggle"
+            aria-label="إظهار أو إخفاء القائمة"
+            aria-expanded="true"
+            title="إظهار أو إخفاء القائمة">☰</button>
+
+          <div>
+            <h1>تسجيل حضور وغياب الطلبة</h1>
+            <p>اختر الصف والحصة، ثم حدّد الطالب المراد تسجيل غيابه.</p>
+          </div>
+        </div>
+
+        <div class="attendance-today">
+          <span>تاريخ اليوم</span>
+          <strong id="todayDate">—</strong>
+        </div>
+
+      </div>
+
+      <!-- نموذج تسجيل الغياب -->
+      <section class="panel attendance-panel">
+
+        <div class="attendance-panel-heading">
+          <div>
+            <h2>تسجيل الغياب</h2>
+            <p>تُحمّل الأسماء من قاعدة بيانات إدارة الطلبة.</p>
+          </div>
+        </div>
+
+        <div class="attendance-form-grid">
+
+          <div class="form-group">
+            <label for="gradeSelect">الصف والشعبة</label>
+            <select id="gradeSelect">
+              <option value="">اختر الصف والشعبة</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="lessonSelect">الحصة</label>
+            <select id="lessonSelect">
+              <option value="">اختر الحصة</option>
+              <option value="الحصة الأولى">الحصة الأولى</option>
+              <option value="الحصة الثانية">الحصة الثانية</option>
+              <option value="الحصة الثالثة">الحصة الثالثة</option>
+              <option value="الحصة الرابعة">الحصة الرابعة</option>
+              <option value="الحصة الخامسة">الحصة الخامسة</option>
+              <option value="الحصة السادسة">الحصة السادسة</option>
+              <option value="الحصة السابعة">الحصة السابعة</option>
+              <option value="الحصة الثامنة">الحصة الثامنة</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="attendanceDate">التاريخ</label>
+            <input type="date" id="attendanceDate">
+          </div>
+
+          <div class="form-group">
+            <label for="teacherName">اسم المعلم/المعلمة</label>
+            <input type="text" id="teacherName" placeholder="اكتب الاسم">
+          </div>
+
+          <div class="form-group">
+            <label for="studentSelect">اسم الطالب</label>
+            <select id="studentSelect" disabled>
+              <option value="">اختر الصف والشعبة أولًا</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>الحالة الحالية</label>
+            <div id="studentStatusPreview" class="status-preview">
+              اختر طالبًا لعرض حالته.
+            </div>
+          </div>
+
+        </div>
+
+        <div class="attendance-actions">
+          <button type="button" id="saveAttendanceBtn" class="btn-primary">
+            حفظ الغياب
+          </button>
+
+          <button type="button" id="refreshListBtn" class="btn-secondary">
+            تحديث البيانات
+          </button>
+        </div>
+
+        <p id="pageMessage" class="attendance-message" role="status">
+          جارٍ تحميل البيانات...
+        </p>
+
+      </section>
+
+      <!-- عرض حالة طلبة الصف -->
+      <section class="panel attendance-panel">
+
+        <div class="attendance-panel-heading">
+          <div>
+            <h2>حالة الطلبة في الحصة المحددة</h2>
+            <p>تعرض القائمة حالة كل طالب في التاريخ والحصة المحددين.</p>
+          </div>
+        </div>
+
+        <div class="status-filters">
+
+          <div>
+            <label for="statusGradeFilter">الصف والشعبة</label>
+            <select id="statusGradeFilter" class="form-control">
+              <option value="">اختر الصف والشعبة</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="statusLessonFilter">الحصة</label>
+            <select id="statusLessonFilter" class="form-control">
+              <option value="">اختر الحصة</option>
+              <option value="1">الحصة الأولى</option>
+              <option value="2">الحصة الثانية</option>
+              <option value="3">الحصة الثالثة</option>
+              <option value="4">الحصة الرابعة</option>
+              <option value="5">الحصة الخامسة</option>
+              <option value="6">الحصة السادسة</option>
+              <option value="7">الحصة السابعة</option>
+              <option value="8">الحصة الثامنة</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="attendance-table-wrap">
+          <table class="attendance-table">
+            <thead>
+              <tr>
+                <th>اسم الطالب</th>
+                <th>الصف والشعبة</th>
+                <th>الحصة</th>
+                <th>الحالة</th>
+                <th>اسم المعلم/المعلمة</th>
+                <th>وقت التسجيل</th>
+              </tr>
+            </thead>
+
+            <tbody id="studentsBody">
+              <tr>
+                <td colspan="6">اختر الصف والحصة لعرض الطلبة.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>سالي موسى العمرات / مدرسة كفرسوم الثانوية الشاملة للبنات</p>
+    <p>© 2026</p>
+  </footer>
+
+  <script type="module" src="attendance.js"></script>
+  <script src="sidebar.js"></script>
+
+</body>
+</html>
+```

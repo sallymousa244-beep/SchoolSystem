@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إدارة الطلاب | نظام إدارة المدارس</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    :root {
+      --students-navy: #172740;
+      --students-navy-light: #243b5a;
+      --students-gold: #d4a85a;
+      --students-bg: #f5f7fb;
+      --students-white: #ffffff;
+      --students-text: #273449;
+      --students-muted: #788397;
+      --students-border: #e4e9f0;
+      --students-radius: 16px;
+    }
+
+    body {
+      background: var(--students-bg);
+      color: var(--students-text);
+    }
+
+    /* الحفاظ على تخطيط لوحة التحكم الأصلي */
+    .app-container.dashboard-page.students-page {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .students-page .dashboard-main {
+      min-width: 0;
+      flex: 1;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .students-page .dashboard-heading {
+      margin-bottom: 26px;
+    }
+
+    .students-page .heading-start {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .students-page .eyebrow {
+      color: #a47a32;
+      font-size: 13px;
+      font-weight: 700;
+      margin: 0 0 6px;
+    }
+
+    .students-page .dashboard-heading h1 {
+      color: var(--students-navy);
+      font-size: clamp(23px, 3vw, 31px);
+      margin: 0 0 8px;
+    }
+
+    .students-page .muted {
+      color: var(--students-muted);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    /* الإحصائيات */
+    .students-page .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 22px;
+      min-width: 0;
+    }
+
+    .students-page .stat-card {
+      position: relative;
+      overflow: hidden;
+      padding: 24px;
+      background: var(--students-white);
+      border: 1px solid var(--students-border);
+      border-radius: var(--students-radius);
+      box-shadow: 0 5px 18px rgba(23, 39, 64, 0.045);
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    .students-page .stat-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--students-gold);
+    }
+
+    .students-page .stat-card h3 {
+      margin: 0 0 14px;
+      color: var(--students-muted);
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .students-page .stat-card p {
+      margin: 0;
+      color: var(--students-navy);
+      font-size: 32px;
+      font-weight: 800;
+    }
+
+    /* البطاقات */
+    .students-page .panel {
+      background: var(--students-white);
+      border: 1px solid var(--students-border);
+      border-radius: var(--students-radius);
+      padding: 25px;
+      margin-bottom: 22px;
+      box-shadow: 0 5px 18px rgba(23, 39, 64, 0.045);
+      min-width: 0;
+      box-sizing: border-box;
+    }
+
+    .students-page .panel h2 {
+      margin: 0 0 18px;
+      color: var(--students-navy);
+      font-size: 19px;
+    }
+
+    .students-page .panel > .muted {
+      margin-bottom: 18px;
+    }
+
+    /* الحقول */
+    .students-page label {
+      display: block;
+      margin: 16px 0 8px;
+      color: var(--students-text);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .students-page input:not([type="hidden"]),
+    .students-page select {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      min-height: 45px;
+      padding: 11px 13px;
+      border: 1px solid #dce3ed;
+      border-radius: 10px;
+      background: #fff;
+      color: var(--students-text);
+      font: inherit;
+      outline: none;
+      box-sizing: border-box;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .students-page input:focus,
+    .students-page select:focus {
+      border-color: var(--students-gold);
+      box-shadow: 0 0 0 3px rgba(212, 168, 90, 0.16);
+    }
+
+    .students-page input[type="file"] {
+      background: #fafbfd;
+      padding: 9px;
+    }
+
+    /* الأزرار */
+    .students-page button {
+      font: inherit;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .students-page .panel button {
+      min-height: 43px;
+      padding: 10px 19px;
+      margin-top: 15px;
+      border: 1px solid var(--students-navy);
+      border-radius: 10px;
+      background: var(--students-navy);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .students-page .panel button:hover {
+      background: var(--students-navy-light);
+    }
+
+    .students-page .panel button:active {
+      transform: translateY(1px);
+    }
+
+    .students-page .panel button.secondary-btn {
+      background: #fff;
+      color: var(--students-navy);
+      border-color: var(--students-border);
+    }
+
+    .students-page .record-form {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .students-page .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .students-page .form-row button {
+      margin-top: 16px;
+    }
+
+    /* جدول الطلاب */
+    .students-page .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 20px;
+      border: 1px solid var(--students-border);
+      border-radius: 12px;
+      box-sizing: border-box;
+    }
+
+    .students-page table {
+      width: 100%;
+      min-width: 540px;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    .students-page th,
+    .students-page td {
+      padding: 15px 16px;
+      text-align: right;
+      border-bottom: 1px solid var(--students-border);
+      vertical-align: middle;
+    }
+
+    .students-page th {
+      background: #f0f3f8;
+      color: var(--students-navy);
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .students-page td {
+      font-size: 14px;
+    }
+
+    .students-page tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .students-page tbody tr:hover {
+      background: #fbfcfe;
+    }
+
+    .students-page .empty-state {
+      text-align: center;
+      color: var(--students-muted);
+      padding: 28px 12px;
+    }
+
+    .students-page #studentsImportMessage,
+    .students-page #studentFormMessage,
+    .students-page #studentsListMessage {
+      line-height: 1.8;
+      font-size: 13px;
+    }
+
+    .students-page #studentsImportMessage:empty,
+    .students-page #studentFormMessage:empty,
+    .students-page #studentsListMessage:empty {
+      display: none;
+    }
+
+    /* القائمة الجانبية */
+    .students-page .sidebar-toggle {
+      flex-shrink: 0;
+    }
+
+    .students-page .menu-item.active {
+      background: rgba(212, 168, 90, 0.17);
+      color: var(--students-gold);
+      border-right: 3px solid var(--students-gold);
+    }
+
+    /* التذييل */
+    .students-footer {
+      text-align: center;
+      padding: 20px 15px;
+      color: var(--students-muted);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .students-footer p {
+      margin: 3px 0;
+    }
+
+    /* الأجهزة المتوسطة */
+    @media (max-width: 900px) {
+      .students-page .dashboard-main {
+        padding: 20px;
+      }
+
+      .students-page .panel {
+        padding: 20px;
+      }
+    }
+
+    /* الهواتف */
+    @media (max-width: 600px) {
+      .students-page .dashboard-main {
+        padding: 14px;
+      }
+
+      .students-page .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .students-page .stat-card {
+        padding: 19px;
+      }
+
+      .students-page .stat-card p {
+        font-size: 27px;
+      }
+
+      .students-page .panel {
+        padding: 17px;
+        border-radius: 13px;
+      }
+
+      .students-page .heading-start {
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .students-page .form-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .students-page .form-row button {
+        width: 100%;
+        margin-top: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="school-heading" dir="rtl">
+
+    <div class="heading-school-icon">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M10 40 L50 12 L90 40"
+                  fill="none" stroke="currentColor"
+                  stroke-width="5" stroke-linejoin="round"/>
+
+            <rect x="18" y="40" width="64" height="48"
+                  rx="3" fill="none"
+                  stroke="currentColor" stroke-width="4"/>
+
+            <rect x="42" y="61" width="16" height="27"
+                  fill="none" stroke="currentColor"
+                  stroke-width="3"/>
+
+            <rect x="26" y="49" width="11" height="10"
+                  fill="none" stroke="currentColor"
+                  stroke-width="3"/>
+
+            <rect x="63" y="49" width="11" height="10"
+                  fill="none" stroke="currentColor"
+                  stroke-width="3"/>
+        </svg>
+    </div>
+
+    <div class="heading-ministry">
+        <h2>وزارة التربية والتعليم</h2>
+        <h3>لواء بني كنانة</h3>
+    </div>
+
+    <div class="heading-title">
+        <h1>نظام متابعة تأخير ومغادرات الطلاب</h1>
+        <p>نظام إلكتروني لتنظيم ومتابعة السجلات المدرسية</p>
+    </div>
+
+</header>
+
+<main class="app-container dashboard-page students-page">
+
+  <!-- القائمة الجانبية -->
+  <aside class="sidebar">
+
+    <div class="sidebar-school">
+      <div class="school-avatar"></div>
+      <div>
+        <strong id="sidebarSchoolName">المدرسة</strong>
+        <small>لوحة الإدارة</small>
+      </div>
+    </div>
+
+    <p class="menu-caption">القائمة الرئيسية</p>
+
+       
+      <button
+        type="button"
+        class="menu-item"
+        onclick="window.location.href='dashboard.html'">
+        ⌂
+        <span>لوحة التحكم</span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-item active"
+        onclick="window.location.href='late.html'">
+        ◷
+        <span>تسجيل تأخير</span>
+      </button>
+
+      <button
+  type="button"
+  class="menu-item"
+  onclick="window.location.href='dashboard.html?view=departureForm'">
+  ↗
+  <span>تسجيل مغادرة</span>
+</button>
+
+<button type="button" class="menu-item"
+        onclick="window.location.href='attendance.html'">
+  ☑ <span>تسجيل الغياب</span>
+</button>
+
+      
+<button
+  type="button"
+  class="menu-item"
+  onclick="window.location.href='dashboard.html?view=lateLog'">
+  ▤
+  <span>سجل التأخيرات</span>
+</button>
+
+<button
+  type="button"
+  class="menu-item"
+  onclick="window.location.href='dashboard.html?view=departureLog'">
+  ▤
+  <span>سجل المغادرات</span>
+</button>
+
+<button
+  type="button"
+  class="menu-item"
+  onclick="window.location.href='dashboard.html?view=reports'">
+  ▥
+  <span>التقارير</span>
+</button>
+
+
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="window.location.href='students.html'">
+        ♙
+        <span>إدارة الطلاب</span>
+      </button>
+
+      <button
+        type="button"
+        id="logoutBtn"
+        class="menu-item logout-item">
+        🚪
+        <span>تسجيل الخروج</span>
+      </button>
+
+    </aside>
+
+  <!-- المحتوى الرئيسي -->
+  <section class="dashboard-main">
+
+    <div class="dashboard-heading">
+      <div class="heading-start">
+
+        <button type="button"
+          id="sidebarToggle"
+          class="sidebar-toggle"
+          aria-label="إظهار أو إخفاء القائمة"
+          aria-expanded="true"
+          title="إظهار أو إخفاء القائمة">☰</button>
+
+        <div>
+          <p class="eyebrow">إدارة شؤون الطلاب</p>
+          <h1>إدارة الطلاب</h1>
+          <p class="muted">
+            استيراد بيانات الطلاب وإضافة البيانات وتعديلها وتنظيمها.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- الإحصائيات -->
+    <div class="stats-grid">
+
+      <div class="stat-card">
+        <h3>إجمالي الطلاب</h3>
+        <p id="totalStudentsCount">0</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>عدد الصفوف والشعب</h3>
+        <p id="totalClassesCount">0</p>
+      </div>
+
+    </div>
+
+
+<!-- استيراد بيانات الطلاب من Excel -->
+<div class="panel students-import-panel">
+  <h2>استيراد بيانات الطلاب</h2>
+
+  <p class="muted">
+    نزّلي قالب Excel، ثم أدخل أسماء الطلاب  والصف والشعبة.
+    عند رفع ملف جديد، ستتم إضافة الطلاب الجديدات دون حذف البيانات القديمة.
+  </p>
+
+<div class="form-group" style="margin-bottom: 20px;">
+  <label for="academicYearSelect">العام الدراسي</label>
+  <select id="academicYearSelect" class="form-control">
+    <option value="2026 / 2027" selected>2026 / 2027</option>
+    <option value="2027 / 2028">2027 / 2028</option>
+    <option value="2028 / 2029">2028 / 2029</option>
+    <option value="2029 / 2030">2029 / 2030</option>
+    <option value="2030 / 2031">2030 / 2031</option>
+  </select>
+  <small>يرجى اختيار العام الدراسي لإدارة قائمة الطلاب.</small>
+</div>
+
+
+  <button type="button" id="downloadStudentsTemplateBtn">
+    تنزيل قالب Excel
+  </button>
+
+  <label for="studentsCsvFile">اختيار ملف Excel</label>
+  <input
+    type="file"
+    id="studentsCsvFile"
+    accept=".xlsx,.xls"
+  >
+
+  <button type="button" id="importStudentsBtn">
+    استيراد بيانات الطلاب
+  </button>
+
+  <p
+    id="studentsImportMessage"
+    role="status"
+    aria-live="polite">
+  </p>
+</div>
+    
+
+    <!-- إضافة وتعديل الطلاب -->
+    <div class="panel">
+      <h2 id="studentFormTitle">إضافة طالبة</h2>
+
+      <form id="studentForm" class="record-form">
+
+        <input type="hidden" id="studentDocId">
+
+        <label for="studentNameInput">اسم الطالب</label>
+        <input type="text" id="studentNameInput"
+          placeholder="أدخل الاسم الكامل" required>
+
+        <label for="studentGradeInput">الصف والشعبة</label>
+        <select id="studentGradeInput" required>
+          <option value="">يرجى اختيار الصف والشعبة</option>
+        </select>
+
+        <div class="form-row">
+          <button type="submit" id="saveStudentBtn">
+            حفظ البيانات
+          </button>
+
+          <button type="button" id="cancelStudentEditBtn"
+            class="secondary-btn" hidden>
+            إلغاء التعديل
+          </button>
+        </div>
+
+        <p id="studentFormMessage"
+          role="status" aria-live="polite"></p>
+
+      </form>
+    </div>
+
+    <!-- قائمة الطلاب -->
+    <div class="panel">
+      <h2>قائمة الطلاب</h2>
+
+      <label for="studentSearch">البحث باسم الطالب</label>
+      <input type="search" id="studentSearch"
+        placeholder="اكتبي الاسم للبحث...">
+
+      <label for="studentGradeFilter">تصفية حسب الصف والشعبة</label>
+      <select id="studentGradeFilter">
+        <option value="">جميع الصفوف والشعب</option>
+      </select>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>اسم الطالب</th>
+              <th>الصف والشعبة</th>
+              <th>الإجراءات</th>
+            </tr>
+          </thead>
+
+          <tbody id="studentsTableBody">
+            <tr>
+              <td colspan="3" class="empty-state">
+                جاري تحميل البيانات...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p id="studentsListMessage"
+        role="status" aria-live="polite"></p>
+    </div>
+
+  </section>
+</main>
+
+<footer class="students-footer">
+  <p>سالي موسى العمرات / مدرسة كفرسوم الثانوية الشاملة للبنات</p>
+  <p>© 2026</p>
+</footer>
+
+
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+<script src="sidebar.js"></script>
+<script type="module" src="students.js"></script>
+</body>
+</html>
